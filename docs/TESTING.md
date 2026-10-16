@@ -4,6 +4,8 @@ Lần kiểm tra bàn giao: **14/10/2026, múi giờ Việt Nam**. Môi trườn
 
 ## Kết quả tự động
 
+**Chuẩn bị GitHub 16/10/2026:** kiểm tra từ bản clone sạch, không mang theo `bin`, `obj`, `App_Data` hoặc cấu hình local. `dotnet tool restore` và restore solution thành công; build Release **0 lỗi, 0 cảnh báo**; test **18/18 PASS**. NuGet phát hiện hai advisory mới ở dependency Pkcs 9.0.11; đã pin bản vá 9.0.21 và chạy lại build/test. Lệnh `dotnet list AuroraHotel.sln package --vulnerable --include-transitive` sau sửa không báo package có lỗ hổng từ các nguồn đang dùng. Kết quả của lần chạy trên máy nằm tại `artifacts/github-download-check-20261016/TestResults/github-checkout-tests.trx`; không đưa thư mục build hoặc dữ liệu chạy thử lên GitHub. Trạng thái CI trên GitHub xem riêng tại tab Actions.
+
 **Cập nhật giao diện 15/10/2026:** đã rà soát font tiếng Việt, khoảng cách và responsive trên 29 đường dẫn, đồng thời chạy lại bộ kiểm thử hiện có thành công **18/18**. Chi tiết và phạm vi xác minh: [UI-REVIEW.md](UI-REVIEW.md). Các kết quả build, audit package và kiểm thử nghiệp vụ bên dưới thuộc lần bàn giao 14/10/2026.
 
 `dotnet build AuroraHotel.sln -c Release`: **PASS — 0 lỗi, 0 cảnh báo**.
