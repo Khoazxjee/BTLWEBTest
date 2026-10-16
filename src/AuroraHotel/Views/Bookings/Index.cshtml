@@ -1,0 +1,3 @@
+@model PageResult<Reservation>
+@{ ViewData["Title"] = "Đơn đặt của tôi"; }
+<section class="container section"><div class="section-heading"><div><div class="eyebrow">HÀNH TRÌNH CỦA BẠN</div><h1>Đơn đặt của tôi</h1></div><a class="btn btn-primary" asp-controller="Rooms" asp-action="Index">Đặt kỳ nghỉ mới ↗</a></div><div class="panel"><partial name="_ReservationsTable" model="Model.Items" /><partial name="_Pager" model="@((Model.Page, Model.Pages))" /></div></section>

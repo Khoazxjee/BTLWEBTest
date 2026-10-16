@@ -1,0 +1,8 @@
+@model StayInput
+@inject IHotelClock Clock
+<div class="form-grid">
+<div class="field"><label asp-for="ArrivalDate"></label><input asp-for="ArrivalDate" class="form-control" min="@Clock.Today.ToString("yyyy-MM-dd")" /><span asp-validation-for="ArrivalDate"></span></div>
+<div class="field"><label asp-for="DepartureDate"></label><input asp-for="DepartureDate" class="form-control" min="@Clock.Today.AddDays(1).ToString("yyyy-MM-dd")" /><span asp-validation-for="DepartureDate"></span></div>
+<div class="field"><label asp-for="GuestCount"></label><input asp-for="GuestCount" class="form-control" min="1" max="20" /><span asp-validation-for="GuestCount"></span></div>
+</div>
+<div class="field"><label asp-for="Notes"></label><textarea asp-for="Notes" class="form-control" rows="3" placeholder="Chia sẻ yêu cầu của bạn..."></textarea><span asp-validation-for="Notes"></span></div>

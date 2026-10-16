@@ -1,0 +1,14 @@
+@model SearchPage
+@{ ViewData["Title"] = "Phòng & kỳ nghỉ"; }
+<div class="page-intro container"><div class="eyebrow">KHÔNG GIAN CỦA BẠN</div><h1>Một kỳ nghỉ, thật vừa vặn.</h1><p>Chọn khoảng thời gian và tìm căn phòng dành riêng cho bạn.</p></div>
+<section class="container pb-5">
+<form asp-action="Index" method="get" id="room-search" class="search-panel filter-panel">
+<div class="field"><label for="arrival">Ngày nhận phòng</label><input id="arrival" name="ArrivalDate" type="date" value="@Model.Search.ArrivalDate?.ToString("yyyy-MM-dd")" required class="form-control" /></div>
+<div class="field"><label for="departure">Ngày trả phòng</label><input id="departure" name="DepartureDate" type="date" value="@Model.Search.DepartureDate?.ToString("yyyy-MM-dd")" required class="form-control" /></div>
+<div class="field"><label for="guests">Số khách</label><input id="guests" name="GuestCount" type="number" min="1" max="20" value="@Model.Search.GuestCount" class="form-control" /></div>
+<div class="field"><label for="roomtype">Loại phòng</label><select id="roomtype" name="RoomTypeId" class="form-select"><option value="">Tất cả loại phòng</option>@foreach (var t in Model.Types) { <option value="@t.Id" selected="@(Model.Search.RoomTypeId == t.Id)">@t.Name</option> }</select></div>
+<div class="field"><label for="minprice">Giá từ (VND)</label><input id="minprice" type="number" name="MinPrice" min="0" value="@Model.Search.MinPrice" class="form-control" placeholder="Không giới hạn" /></div>
+<div class="field"><label for="maxprice">Giá đến (VND)</label><input id="maxprice" type="number" name="MaxPrice" min="0" value="@Model.Search.MaxPrice" class="form-control" placeholder="Không giới hạn" /></div>
+<div class="field"><label for="sort">Sắp xếp</label><select id="sort" name="Sort" class="form-select"><option value="price" selected="@(Model.Search.Sort == "price")">Giá tăng dần</option><option value="price-desc" selected="@(Model.Search.Sort == "price-desc")">Giá giảm dần</option><option value="capacity" selected="@(Model.Search.Sort == "capacity")">Sức chứa lớn nhất</option></select></div>
+<button class="btn btn-primary" type="submit">Tìm phòng trống ↗</button>
+</form><div id="search-feedback" role="status" aria-live="polite"></div><div id="room-results"><partial name="_Results" model="Model" /></div></section>
